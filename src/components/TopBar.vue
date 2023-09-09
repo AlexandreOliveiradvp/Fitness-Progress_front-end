@@ -57,6 +57,12 @@ const setTheme = () => {
     text-align: center;
     padding-top: 4px;
     cursor: pointer;
+    &:hover {
+      border-color: var(--lilac-base-hover);
+      .user-icon {
+        color: var(--lilac-base-hover);
+      }
+    }
     .user-icon {
       color: var(--lilac-base);
       font-size: 2rem;
@@ -72,6 +78,7 @@ const setTheme = () => {
     border-radius: 2rem;
     padding-top: 5px;
     margin: 0.3rem 1.5rem 0 0;
+    background-color: var();
     &:hover {
       background-color: var(--green-base-hover) !important;
     }
