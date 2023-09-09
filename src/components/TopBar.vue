@@ -1,6 +1,6 @@
 <template>
   <v-app-bar :elevation="2" class="top-bar">
-    <v-container>
+    <v-container fluid>
       <v-row>
         <v-col cols="6" class="pt-4"
           ><img src="src/assets/logo-fp.svg" alt="logo Fp" class="logo-fp"

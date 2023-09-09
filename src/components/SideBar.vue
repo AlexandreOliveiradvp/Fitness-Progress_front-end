@@ -3,6 +3,13 @@
     <div class="action" @click="sideBarCollapse = !sideBarCollapse">
       <Icon icon="ic:round-play-arrow" :rotate="2" class="icon-collapse" />
     </div>
+    <div class="menu-list">
+      <ul>
+        <li class="px-3 title-list">
+            <Icon icon="ion:create" class="me-2"/>Cadastro
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -44,6 +51,16 @@ defineComponent({
       color: #ffffff;
       font-size: 1.2rem;
       transition-duration: 300ms;
+    }
+  }
+  .menu-list {
+    width: 100%;
+    height: 80%;
+    padding-top: 0.7rem;
+    .title-list {
+        color: #ffffff;
+        background-color: rgb(90, 20, 204);
+        padding: 0.5rem 0 0.5rem 0;
     }
   }
 }
