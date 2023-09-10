@@ -1,6 +1,26 @@
 /* font family import */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,400;1,700&display=swap");
-@import url('@/styles/variables.scss');
+@import url("@/styles/variables.scss");
 * {
   font-family: "Lato", sans-serif;
+}
+
+/* ==========================================================================
+ - Text Styles
+========================================================================== */
+
+.title-page {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--blue-title-page);
+}
+
+/* ==========================================================================
+ - Button Styles
+========================================================================== */
+
+.button-default {
+  &:hover {
+    background-color: var(--blue-base-hover) !important;
+  }
 }

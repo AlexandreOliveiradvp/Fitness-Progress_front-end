@@ -55,19 +55,19 @@ const setTheme = () => {
   .circle {
     width: 45px;
     height: 45px;
-    border: 2px solid var(--lilac-base);
+    border: 2px solid var(--blue-base);
     border-radius: 45px;
     text-align: center;
     padding-top: 4px;
     cursor: pointer;
     &:hover {
-      border-color: var(--lilac-base-hover);
+      border-color: var(--blue-base-hover);
       .user-icon {
-        color: var(--lilac-base-hover);
+        color: var(--blue-base-hover);
       }
     }
     .user-icon {
-      color: var(--lilac-base);
+      color: var(--blue-base);
       font-size: 2rem;
     }
   }

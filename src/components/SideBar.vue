@@ -64,11 +64,11 @@ defineComponent({
 .side-bar {
   width: 165px;
   height: calc(100vh - 64px);
-  background-color: var(--lilac-bg-side-bar);
+  background-color: var(--blue-bg-side-bar);
   background-image: linear-gradient(
     0deg,
-    var(--lilac-base) 5%,
-    var(--lilac-bg-side-bar) 50%
+    var(--blue-base) 5%,
+    var(--blue-bg-side-bar) 50%
   );
   transition-duration: 200ms;
   .action {
@@ -78,12 +78,12 @@ defineComponent({
     width: 25px;
     height: 25px;
     border-radius: 25px;
-    background-color: var(--lilac-base);
+    background-color: var(--blue-base);
     text-align: center;
     padding-top: 3px;
     cursor: pointer;
     &:hover {
-      background-color: var(--lilac-base-hover);
+      background-color: var(--blue-base-hover);
     }
     .icon-collapse {
       color: #ffffff;

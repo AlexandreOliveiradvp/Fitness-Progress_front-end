@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <TopBar></TopBar>
-    <v-main class="d-flex">
+    <v-main class="d-flex bg-grey-lighten-4">
       <SideBar></SideBar>
       <router-view />
     </v-main>
