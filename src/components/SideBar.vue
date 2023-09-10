@@ -26,7 +26,11 @@
           :class="{ 'd-block-height': registerCollapse }"
           class="container-expanded"
         >
-          <li class="px-5" v-if="registerCollapse">
+          <li
+            class="px-5"
+            v-if="registerCollapse"
+            @click="router.push({ path: '/register-evaluated' })"
+          >
             <div>
               <Icon icon="icon-park-solid:sporting" class="me-2 mt-1" />
             </div>
@@ -46,9 +50,11 @@
 <script lang="ts" setup>
 import { defineComponent, ref } from "vue";
 import { Icon } from "@iconify/vue";
+import { useRouter } from "vue-router";
 
 const sideBarCollapse = ref(false);
 const registerCollapse = ref(false);
+const router = useRouter();
 
 defineComponent({
   name: "SideBar",
@@ -114,6 +120,9 @@ defineComponent({
         &:hover:not(.title-menu) {
           background-color: rgb(76, 41, 202);
         }
+      }
+      .title-menu {
+        cursor: default !important;
       }
     }
     .container-expanded {
