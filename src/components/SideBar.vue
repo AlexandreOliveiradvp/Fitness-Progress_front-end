@@ -5,9 +5,26 @@
     </div>
     <div class="menu-list">
       <ul>
-        <li class="px-3 title-list">
-            <Icon icon="ion:create" class="me-2"/>Cadastro
+        <li class="px-3 title-list" @click="registerCollapse = !registerCollapse">
+          <div>
+            <Icon icon="ion:create" class="me-2 mt-1" />
+          </div>
+          <div>Cadastro</div>
         </li>
+        <div v-if="registerCollapse">
+          <li class="px-3">
+            <div>
+              <Icon icon="icon-park-solid:sporting" class="me-2 mt-1" />
+            </div>
+            <div>Avaliados</div>
+          </li>
+          <li class="px-3">
+            <div>
+              <Icon icon="icon-park-solid:doc-fail" class="me-2 mt-1" />
+            </div>
+            <div>Avaliações</div>
+          </li>
+        </div>
       </ul>
     </div>
   </div>
@@ -17,6 +34,8 @@ import { defineComponent, ref } from "vue";
 import { Icon } from "@iconify/vue";
 
 const sideBarCollapse = ref(false);
+const registerCollapse = ref(false)
+
 
 defineComponent({
   name: "SideBar",
@@ -58,9 +77,22 @@ defineComponent({
     height: 80%;
     padding-top: 0.7rem;
     .title-list {
+      color: #ffffff;
+      background-color: rgb(90, 20, 204);
+      padding: 0.5rem 0 0.5rem 0;
+      cursor: pointer;
+      display: flex;
+      div {
+        height: 100%;
+      }
+    }
+    ul {
+      li:not(.title-list) {
+        background-color: rgb(110, 35, 230);
+        padding: 0.3rem 0 0.3rem 0;
         color: #ffffff;
-        background-color: rgb(90, 20, 204);
-        padding: 0.5rem 0 0.5rem 0;
+        display: flex;
+      }
     }
   }
 }
