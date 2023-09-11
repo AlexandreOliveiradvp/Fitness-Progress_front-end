@@ -73,13 +73,17 @@
                 <th class="text-left">Nome</th>
                 <th class="text-left">Email</th>
                 <th class="text-left">Telefone</th>
+                <th class="text-left">Data de Nascimento</th>
+                <th class="text-left">Sexo</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Nome teste</td>
-                <td>Email teste</td>
-                <td>(21) 96444-8046</td>
+              <tr v-for="evaluated in evaluateds" :key="evaluated.id">
+                <td>{{ evaluated.name }}</td>
+                <td>{{ evaluated.email }}</td>
+                <td>{{ evaluated.phone }}</td>
+                <td>{{ evaluated.dateofbirth }}</td>
+                <td>{{ evaluated.sex }}</td>
               </tr>
             </tbody>
           </v-table>
@@ -89,9 +93,20 @@
   </v-container>
 </template>
 <script lang="ts" setup>
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import api from "@/api/api";
 defineComponent({
   name: "RegisterEvaluated",
 });
+const evaluateds = ref();
+onMounted(() => {
+  api
+    .get("/evaluated")
+    .then((response) => {
+      evaluateds.value = response.data.Evaluateds;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 </script>
-<style lang="scss"></style>
