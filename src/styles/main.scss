@@ -43,3 +43,11 @@
 .v-field--active {
   background-color: var(--blue-bg-input-text-active) !important;
 }
+
+/* ==========================================================================
+ - Toast Styles
+========================================================================== */
+.success {
+  background-color: var(--success-feedback) !important;
+  color: #ffffff !important;
+}

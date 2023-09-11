@@ -43,6 +43,7 @@ import { defineComponent, onMounted, ref } from "vue";
 import api from "@/api/api";
 import AccordionRegisterEvaluated from "@/components/AccordionRegisterEvaluated.vue";
 import { Icon } from "@iconify/vue";
+import showToast from "@/components/ShowToast";
 defineComponent({
   name: "RegisterEvaluated",
 });
@@ -57,9 +58,21 @@ const getEvaluateds = () => {
       console.log(err);
     });
 };
-const deleteEvaluated = (id: number) => {
-  api.delete(`/evaluated/${id}`).then(() => {});
-  console.log(id);
+const deleteEvaluated = async (id: number) => {
+  const message = ref();
+  await api
+    .delete(`/evaluated/${id}`)
+    .then(() => {
+      message.value = "Avaliado removido com sucesso!";
+      showToast(2000, "success", message.value);
+    })
+    .catch(() => {
+      message.value = "Falha ao remover avaliado. Tente novamente mais tarde.";
+      showToast(2000, "success", message.value);
+    });
+    setTimeout(() => {
+      getEvaluateds();
+    }, 2000)
 };
 onMounted(() => {
   getEvaluateds();
