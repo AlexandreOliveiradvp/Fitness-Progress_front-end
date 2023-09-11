@@ -25,6 +25,14 @@
   }
 }
 
+.delete-button {
+  background-color: var(--danger-feedbak) !important;
+  min-width: 45px !important;
+  .icon-trash {
+    color: #ffffff;
+  }
+}
+
 /* ==========================================================================
  - Accordion Styles
 ========================================================================== */
