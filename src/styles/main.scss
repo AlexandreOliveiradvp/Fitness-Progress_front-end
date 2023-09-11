@@ -24,3 +24,14 @@
     background-color: var(--blue-base-hover) !important;
   }
 }
+
+/* ==========================================================================
+ - Accordion Styles
+========================================================================== */
+.v-expansion-panel-title__overlay {
+  background-color: var(--blue-base) !important;
+}
+
+.v-field--active {
+  background-color: var(--blue-bg-input-text-active) !important;
+}

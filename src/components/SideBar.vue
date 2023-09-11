@@ -6,6 +6,10 @@
     <div class="menu-list">
       <ul>
         <li class="title-menu px-3"><strong>Menu</strong></li>
+        <li class="px-3" @click="router.push({ path: '/dashboard' })">
+          <div><Icon icon="ri:dashboard-fill" class="me-2 mt-1"/></div>
+          <div>Dashboard</div>
+        </li>
         <li
           class="px-3 title-list"
           @click="registerCollapse = !registerCollapse"
