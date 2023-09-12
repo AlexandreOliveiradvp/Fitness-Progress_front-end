@@ -4,7 +4,7 @@
       <v-row>
         <v-col cols="6" class="pt-4"
           ><img
-            src="src/assets/logo-fp.svg"
+            src="src/assets/logoalt1.svg"
             alt="logo Fp"
             class="logo-fp"
             @click="router.push({ path: '/dashboard' })"

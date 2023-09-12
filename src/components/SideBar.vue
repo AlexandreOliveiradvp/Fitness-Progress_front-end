@@ -7,11 +7,12 @@
       <ul>
         <li class="title-menu px-3"><strong>Menu</strong></li>
         <li class="px-3" @click="router.push({ path: '/dashboard' })">
-          <div><Icon icon="ri:dashboard-fill" class="me-2 mt-1"/></div>
+          <div><Icon icon="ri:dashboard-fill" class="me-2 mt-1" /></div>
           <div>Dashboard</div>
         </li>
         <li
           class="px-3 title-list"
+          :class="{ 'bg-active': registerCollapse }"
           @click="registerCollapse = !registerCollapse"
         >
           <div>
@@ -102,17 +103,19 @@ defineComponent({
     margin-top: -1.7rem;
     .title-list {
       color: #ffffff;
-      background-color: rgb(89, 48, 235);
       padding: 0.5rem 0 0.5rem 0;
       cursor: pointer;
       display: flex;
       user-select: none;
       &:hover {
-        background-color: rgb(76, 41, 202);
+        background-color: rgb(98, 55, 255);
       }
       div {
         height: 100%;
       }
+    }
+    .bg-active {
+      background-color: rgb(89, 48, 235);
     }
     ul {
       li:not(.title-list) {
@@ -122,7 +125,7 @@ defineComponent({
         cursor: pointer;
         user-select: none;
         &:hover:not(.title-menu) {
-          background-color: rgb(76, 41, 202);
+          background-color: rgb(98, 55, 255);
         }
       }
       .title-menu {
