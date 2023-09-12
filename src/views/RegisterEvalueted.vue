@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <AccordionRegisterEvaluated />
+    <AccordionRegisterEvaluated @evaluatedRegistred="evaluatedRegistred()" />
     <v-row>
       <v-col class="py-8">
         <v-card>
@@ -18,7 +18,7 @@
                 <th class="text-left">Telefone</th>
                 <th class="text-left">Data de Nascimento</th>
                 <th class="text-left">Sexo</th>
-                <th class="text-left">Ações</th>
+                <th class="text-left">Deletar</th>
               </tr>
             </thead>
             <tbody>
@@ -79,6 +79,14 @@ const deleteEvaluated = async (id: number) => {
       message.value = "Falha ao remover avaliado. Tente novamente mais tarde.";
       showToast(2000, "danger", message.value);
     });
+  setTimeout(() => {
+    loading.value = false;
+    getEvaluateds();
+  }, 600);
+};
+
+const evaluatedRegistred = () => {
+  loading.value = true;
   setTimeout(() => {
     loading.value = false;
     getEvaluateds();

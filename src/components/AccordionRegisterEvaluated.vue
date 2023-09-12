@@ -119,14 +119,18 @@
 import { defineComponent, ref } from "vue";
 import { Form, Field } from "vee-validate";
 import * as yup from "yup";
+import api from "@/api/api";
+import showToast from "@/functions/ShowToast";
 
 defineComponent({
   name: "AccordionRegisterEvaluated",
 });
 
+const emit = defineEmits(['evaluatedRegistred'])
+
 const evaluatedSchema = yup.object({
   name: yup.string().required("Este campo é obrigatório"),
-  email: yup.string().required("Este campo é obrigatório"),
+  email: yup.string().required("Este campo é obrigatório").email('Digite um email válido.'),
   phone: yup.string().required("Este campo é obrigatório"),
   dateofbirth: yup.string().required("Este campo é obrigatório"),
   sex: yup.string().required("Este campo é obrigatório"),
@@ -145,7 +149,27 @@ const sexOptions = [
   { title: "Feminino", value: "female" },
 ];
 
+const message = ref();
+
 const handleEvaluated = () => {
-  console.log("test");
+  api
+    .post("/evaluated", evaluatedInfo.value)
+    .then(() => {
+      message.value = "Avaliado registrado com sucesso!";
+      showToast(2000, "success", message.value);
+      emit('evaluatedRegistred')
+    })
+    .catch(() => {
+      message.value =
+        "Falha ao registrar avaliado. Tente novamente mais tarde.";
+      showToast(2000, "danger", message.value);
+    });
+    setTimeout(() => {
+      evaluatedInfo.value.name = undefined
+      evaluatedInfo.value.email = undefined
+      evaluatedInfo.value.phone = undefined
+      evaluatedInfo.value.dateofbirth = undefined
+      evaluatedInfo.value.sex = undefined
+    },600)
 };
 </script>
