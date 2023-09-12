@@ -22,6 +22,28 @@
 }
 
 /* ==========================================================================
+ - Input Styles
+========================================================================== */
+
+.invalid-input {
+  border: 1px solid var(--danger-feedbak);
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 5px rgba(255, 96, 96, 0.203);
+}
+.invalid-message {
+  font-size: 0.85rem;
+  margin-top: -1px;
+  color: rgb(231, 28, 28);
+}
+
+.invalid-select {
+  .v-input__control {
+    border: 1px solid var(--danger-feedbak);
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px 5px rgba(255, 96, 96, 0.203);
+  }
+}
+/* ==========================================================================
  - Button Styles
 ========================================================================== */
 
@@ -48,12 +70,4 @@
 
 .v-field--active {
   background-color: var(--blue-bg-input-text-active) !important;
-}
-
-/* ==========================================================================
- - Toast Styles
-========================================================================== */
-.success {
-  background-color: var(--success-feedback) !important;
-  color: #ffffff !important;
 }

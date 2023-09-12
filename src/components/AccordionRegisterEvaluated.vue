@@ -9,63 +9,143 @@
         </v-row>
       </v-expansion-panel-title>
       <v-expansion-panel-text class="py-4 px-3">
-        <v-row>
-          <v-col>
-            <v-text-field
-              label="Nome do avaliado"
-              hide-details="auto"
-              variant="solo-filled"
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field
-              label="Email do avaliado"
-              hide-details="auto"
-              variant="solo-filled"
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-text-field
-              label="Telefone do avaliado"
-              hide-details="auto"
-              variant="solo-filled"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field
-              label="Data de nascimento"
-              hide-details="auto"
-              variant="solo-filled"
-            ></v-text-field>
-          </v-col>
-          <v-col>
-            <v-select
-              label="Sexo"
-              :items="['Masculino', 'Feminino']"
-              variant="solo-filled"
-            ></v-select>
-          </v-col>
-          <v-col></v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-btn
-              variant="tonal"
-              class="float-right bg-primary button-default"
-            >
-              Salvar
-            </v-btn>
-          </v-col>
-        </v-row>
+        <Form
+          @submit="handleEvaluated()"
+          :validation-schema="evaluatedSchema"
+          v-slot="{ errors }"
+        >
+          <v-row>
+            <v-col>
+              <Field
+                name="name"
+                v-slot="{ field, errorMessage }"
+                v-model="evaluatedInfo.name"
+              >
+                <v-text-field
+                  v-bind="field"
+                  label="Nome do avaliado"
+                  hide-details="auto"
+                  variant="solo-filled"
+                  :class="{ 'invalid-input': errors.name }"
+                ></v-text-field>
+                <p class="invalid-message">{{ errorMessage }}</p>
+              </Field>
+            </v-col>
+            <v-col>
+              <Field
+                name="email"
+                v-slot="{ field, errorMessage }"
+                v-model="evaluatedInfo.email"
+              >
+                <v-text-field
+                  v-bind="field"
+                  label="Email do avaliado"
+                  hide-details="auto"
+                  variant="solo-filled"
+                  :class="{ 'invalid-input': errors.email }"
+                ></v-text-field>
+                <p class="invalid-message">{{ errorMessage }}</p>
+              </Field>
+            </v-col>
+            <v-col>
+              <Field
+                name="phone"
+                v-slot="{ field, errorMessage }"
+                v-model="evaluatedInfo.phone"
+              >
+                <v-text-field
+                  v-bind="field"
+                  label="Telefone do avaliado"
+                  hide-details="auto"
+                  variant="solo-filled"
+                  :class="{ 'invalid-input': errors.phone }"
+                ></v-text-field>
+                <p class="invalid-message">{{ errorMessage }}</p>
+              </Field>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <Field
+                name="dateofbirth"
+                v-slot="{ field, errorMessage }"
+                v-model="evaluatedInfo.dateofbirth"
+              >
+                <v-text-field
+                  v-bind="field"
+                  label="Data de nascimento"
+                  hide-details="auto"
+                  variant="solo-filled"
+                  :class="{ 'invalid-input': errors.dateofbirth }"
+                ></v-text-field>
+                <p class="invalid-message">{{ errorMessage }}</p>
+              </Field>
+            </v-col>
+            <v-col>
+              <Field
+                name="sex"
+                v-slot="{ field, errorMessage }"
+                v-model="evaluatedInfo.sex"
+              >
+                <v-select
+                  v-bind="field"
+                  label="Sexo"
+                  :items="sexOptions"
+                  variant="solo-filled"
+                  :class="{ 'invalid-select': errors.sex }"
+                ></v-select>
+                <p class="invalid-message mt-n5">{{ errorMessage }}</p>
+              </Field>
+            </v-col>
+            <v-col></v-col>
+          </v-row>
+          <v-row>
+            <v-col>
+              <v-btn
+                variant="tonal"
+                class="float-right bg-primary button-default"
+                type="submit"
+              >
+                Salvar
+              </v-btn>
+            </v-col>
+          </v-row>
+        </Form>
       </v-expansion-panel-text>
     </v-expansion-panel>
   </v-expansion-panels>
 </template>
 <script lang="ts" setup>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+import { Form, Field } from "vee-validate";
+import * as yup from "yup";
+
 defineComponent({
   name: "AccordionRegisterEvaluated",
 });
+
+const evaluatedSchema = yup.object({
+  name: yup.string().required("Este campo é obrigatório"),
+  email: yup.string().required("Este campo é obrigatório"),
+  phone: yup.string().required("Este campo é obrigatório"),
+  dateofbirth: yup.string().required("Este campo é obrigatório"),
+  sex: yup.string().required("Este campo é obrigatório"),
+});
+
+const evaluatedInfo = ref({
+  name: undefined,
+  email: undefined,
+  phone: undefined,
+  dateofbirth: undefined,
+  sex: undefined,
+});
+
+const sexOptions = [
+  { title: "Masculino", value: "male" },
+  { title: "Feminino", value: "female" },
+];
+
+const handleEvaluated = () => {
+  console.log("test");
+};
 </script>

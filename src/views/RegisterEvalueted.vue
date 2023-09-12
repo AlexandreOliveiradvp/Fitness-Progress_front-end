@@ -77,7 +77,7 @@ const deleteEvaluated = async (id: number) => {
     })
     .catch(() => {
       message.value = "Falha ao remover avaliado. Tente novamente mais tarde.";
-      showToast(2000, "success", message.value);
+      showToast(2000, "danger", message.value);
     });
   setTimeout(() => {
     loading.value = false;
