@@ -68,7 +68,7 @@ defineComponent({
 <style lang="scss">
 .side-bar {
   width: 165px;
-  height: calc(100vh - 64px);
+  height: 100%;
   background-color: var(--blue-bg-side-bar);
   background-image: linear-gradient(
     0deg,
