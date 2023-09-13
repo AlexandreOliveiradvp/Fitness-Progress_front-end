@@ -21,13 +21,14 @@
                 v-slot="{ field, errorMessage }"
                 v-model="evaluatedInfo.name"
               >
-                <v-text-field
+                <label>Nome:</label>
+                <input
+                  type="text"
                   v-bind="field"
-                  label="Nome do avaliado"
-                  hide-details="auto"
-                  variant="solo-filled"
+                  class="text-default"
+                  placeholder="Nome do avaliado"
                   :class="{ 'invalid-input': errors.name }"
-                ></v-text-field>
+                />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
@@ -37,13 +38,14 @@
                 v-slot="{ field, errorMessage }"
                 v-model="evaluatedInfo.email"
               >
-                <v-text-field
+                <label>Email:</label>
+                <input
+                  type="text"
                   v-bind="field"
-                  label="Email do avaliado"
-                  hide-details="auto"
-                  variant="solo-filled"
+                  class="text-default"
+                  placeholder="Email do avaliado"
                   :class="{ 'invalid-input': errors.email }"
-                ></v-text-field>
+                />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
@@ -53,13 +55,16 @@
                 v-slot="{ field, errorMessage }"
                 v-model="evaluatedInfo.phone"
               >
-                <v-text-field
+                <label>Telefone do avaliado:</label>
+                <input
+                  type="text"
                   v-bind="field"
-                  label="Telefone do avaliado"
-                  hide-details="auto"
-                  variant="solo-filled"
+                  class="text-default"
+                  placeholder="Telefone do avaliado"
                   :class="{ 'invalid-input': errors.phone }"
-                ></v-text-field>
+                  v-maska
+                  data-maska="(##)#####-####"
+                />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
@@ -71,13 +76,16 @@
                 v-slot="{ field, errorMessage }"
                 v-model="evaluatedInfo.dateofbirth"
               >
-                <v-text-field
+                <label>Data de Nascimento:</label>
+                <input
+                  type="text"
                   v-bind="field"
-                  label="Data de nascimento"
-                  hide-details="auto"
-                  variant="solo-filled"
+                  class="text-default"
+                  placeholder="Nascimento do avaliado"
                   :class="{ 'invalid-input': errors.dateofbirth }"
-                ></v-text-field>
+                  v-maska
+                  data-maska="##/##/####"
+                />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
@@ -87,17 +95,19 @@
                 v-slot="{ field, errorMessage }"
                 v-model="evaluatedInfo.sex"
               >
-                <v-select
-                  v-bind="field"
-                  label="Sexo"
-                  :items="sexOptions"
-                  variant="solo-filled"
-                  :class="{ 'invalid-select': errors.sex }"
-                ></v-select>
-                <p class="invalid-message mt-n5">{{ errorMessage }}</p>
+                <label>Sexo:</label>
+                <select class="select-default"
+                v-bind="field"
+                :class="{ 'invalid-input': errors.sex }"
+                >
+                  <option value="" selected disabled>Selecione o sexo</option>
+                  <option value="male">Masculino</option>
+                  <option value="female">Feminino</option>
+                </select>
+                <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
-            <v-col></v-col>
+            <v-col> </v-col>
           </v-row>
           <v-row>
             <v-col>
@@ -121,18 +131,32 @@ import { Form, Field } from "vee-validate";
 import * as yup from "yup";
 import api from "@/api/api";
 import showToast from "@/functions/ShowToast";
+import { vMaska } from "maska"
 
 defineComponent({
   name: "AccordionRegisterEvaluated",
 });
 
-const emit = defineEmits(['evaluatedRegistred'])
+const emit = defineEmits(["evaluatedRegistred"]);
+const regex = /^[0-9]$/;
 
 const evaluatedSchema = yup.object({
   name: yup.string().required("Este campo é obrigatório"),
-  email: yup.string().required("Este campo é obrigatório").email('Digite um email válido.'),
-  phone: yup.string().required("Este campo é obrigatório"),
-  dateofbirth: yup.string().required("Este campo é obrigatório"),
+  email: yup
+    .string()
+    .required("Este campo é obrigatório")
+    .email("Digite um email válido."),
+  phone: yup
+    .string()
+    .required("Este campo é obrigatório")
+    .matches(
+      regex,
+      "Este campo aceita apenas números."
+    ),
+  dateofbirth: yup
+    .string()
+    .required("Este campo é obrigatório")
+    .matches(regex, "Este campo aceita apenas números."),
   sex: yup.string().required("Este campo é obrigatório"),
 });
 
@@ -144,11 +168,6 @@ const evaluatedInfo = ref({
   sex: undefined,
 });
 
-const sexOptions = [
-  { title: "Masculino", value: "male" },
-  { title: "Feminino", value: "female" },
-];
-
 const message = ref();
 
 const handleEvaluated = () => {
@@ -157,19 +176,19 @@ const handleEvaluated = () => {
     .then(() => {
       message.value = "Avaliado registrado com sucesso!";
       showToast(2000, "success", message.value);
-      emit('evaluatedRegistred')
+      emit("evaluatedRegistred");
     })
     .catch(() => {
       message.value =
         "Falha ao registrar avaliado. Tente novamente mais tarde.";
       showToast(2000, "danger", message.value);
     });
-    setTimeout(() => {
-      evaluatedInfo.value.name = undefined
-      evaluatedInfo.value.email = undefined
-      evaluatedInfo.value.phone = undefined
-      evaluatedInfo.value.dateofbirth = undefined
-      evaluatedInfo.value.sex = undefined
-    },600)
+  setTimeout(() => {
+    evaluatedInfo.value.name = undefined;
+    evaluatedInfo.value.email = undefined;
+    evaluatedInfo.value.phone = undefined;
+    evaluatedInfo.value.dateofbirth = undefined;
+    evaluatedInfo.value.sex = undefined;
+  }, 600);
 };
 </script>
