@@ -85,7 +85,7 @@ const deleteEvaluated = async (id: number) => {
   }, 600);
 };
 
-const evaluatedRegistred = () => {
+const evaluatedRegistred = ():void => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;

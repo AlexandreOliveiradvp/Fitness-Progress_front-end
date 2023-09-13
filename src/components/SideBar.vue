@@ -41,7 +41,11 @@
             </div>
             <div>Avaliados</div>
           </li>
-          <li class="px-5" v-if="registerCollapse">
+          <li
+            class="px-5"
+            v-if="registerCollapse"
+            @click="router.push({ path: '/register-reviews' })"
+          >
             <div>
               <Icon icon="icon-park-solid:doc-fail" class="me-2 mt-1" />
             </div>

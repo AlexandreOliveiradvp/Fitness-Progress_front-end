@@ -21,6 +21,11 @@ const routes = [
         name: "EvaluatedPage",
         component: () => import("@/views/RegisterEvalueted.vue"),
       },
+      {
+        path: "/register-reviews",
+        name: "ReviewsPage",
+        component: () => import("@/views/RegisterReviews.vue"),
+      },
     ],
   },
 ];
