@@ -1,7 +1,14 @@
 :root {
   --green-base: #4d885d;
   --green-base-hover: #3e774d;
-  --lilac-base: #2859b4;
-  --lilac-base-hover: #1c4ba1;
-  --lilac-bg-side-bar: #6572eb;
+  --blue-base: #2859b4;
+  --blue-base-hover: #1c4ba1;
+  --blue-bg-side-bar: #6572eb;
+  //Text Variables
+  --blue-title-page: rgb(25, 86, 156);
+  //Input Text Variables
+  --blue-bg-input-text-active: #e8f6ff;
+  //Buttons and Feedback Variables
+  --danger-feedbak: rgb(255, 71, 71);
+  --success-feedback: rgb(64, 170, 64);
 }

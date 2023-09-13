@@ -6,8 +6,13 @@
     <div class="menu-list">
       <ul>
         <li class="title-menu px-3"><strong>Menu</strong></li>
+        <li class="px-3" @click="router.push({ path: '/dashboard' })">
+          <div><Icon icon="ri:dashboard-fill" class="me-2 mt-1" /></div>
+          <div>Dashboard</div>
+        </li>
         <li
           class="px-3 title-list"
+          :class="{ 'bg-active': registerCollapse }"
           @click="registerCollapse = !registerCollapse"
         >
           <div>
@@ -26,7 +31,11 @@
           :class="{ 'd-block-height': registerCollapse }"
           class="container-expanded"
         >
-          <li class="px-5" v-if="registerCollapse">
+          <li
+            class="px-5"
+            v-if="registerCollapse"
+            @click="router.push({ path: '/register-evaluated' })"
+          >
             <div>
               <Icon icon="icon-park-solid:sporting" class="me-2 mt-1" />
             </div>
@@ -46,9 +55,11 @@
 <script lang="ts" setup>
 import { defineComponent, ref } from "vue";
 import { Icon } from "@iconify/vue";
+import { useRouter } from "vue-router";
 
 const sideBarCollapse = ref(false);
 const registerCollapse = ref(false);
+const router = useRouter();
 
 defineComponent({
   name: "SideBar",
@@ -57,12 +68,12 @@ defineComponent({
 <style lang="scss">
 .side-bar {
   width: 165px;
-  height: calc(100vh - 64px);
-  background-color: var(--lilac-bg-side-bar);
+  height: 100%;
+  background-color: var(--blue-bg-side-bar);
   background-image: linear-gradient(
     0deg,
-    var(--lilac-base) 5%,
-    var(--lilac-bg-side-bar) 50%
+    var(--blue-base) 5%,
+    var(--blue-bg-side-bar) 50%
   );
   transition-duration: 200ms;
   .action {
@@ -72,12 +83,12 @@ defineComponent({
     width: 25px;
     height: 25px;
     border-radius: 25px;
-    background-color: var(--lilac-base);
+    background-color: var(--blue-base);
     text-align: center;
     padding-top: 3px;
     cursor: pointer;
     &:hover {
-      background-color: var(--lilac-base-hover);
+      background-color: var(--blue-base-hover);
     }
     .icon-collapse {
       color: #ffffff;
@@ -92,17 +103,19 @@ defineComponent({
     margin-top: -1.7rem;
     .title-list {
       color: #ffffff;
-      background-color: rgb(89, 48, 235);
       padding: 0.5rem 0 0.5rem 0;
       cursor: pointer;
       display: flex;
       user-select: none;
       &:hover {
-        background-color: rgb(76, 41, 202);
+        background-color: rgb(98, 55, 255);
       }
       div {
         height: 100%;
       }
+    }
+    .bg-active {
+      background-color: rgb(89, 48, 235);
     }
     ul {
       li:not(.title-list) {
@@ -112,8 +125,11 @@ defineComponent({
         cursor: pointer;
         user-select: none;
         &:hover:not(.title-menu) {
-          background-color: rgb(76, 41, 202);
+          background-color: rgb(98, 55, 255);
         }
+      }
+      .title-menu {
+        cursor: default !important;
       }
     }
     .container-expanded {

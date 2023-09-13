@@ -3,7 +3,11 @@
     <v-container fluid>
       <v-row>
         <v-col cols="6" class="pt-4"
-          ><img src="src/assets/logo-fp.svg" alt="logo Fp" class="logo-fp"
+          ><img
+            src="src/assets/logoalt1.svg"
+            alt="logo Fp"
+            class="logo-fp"
+            @click="router.push({ path: '/dashboard' })"
         /></v-col>
         <v-col cols="6" class="pt-3 text-end">
           <button class="bg-secondary btn-theme" @click="setTheme()">
@@ -34,10 +38,12 @@
 <script lang="ts" setup>
 import { defineComponent, ref } from "vue";
 import { Icon } from "@iconify/vue";
+import { useRouter } from "vue-router";
 defineComponent({
   name: "TopBar",
 });
 
+const router = useRouter();
 const theme = ref("light");
 
 const setTheme = () => {
@@ -46,30 +52,28 @@ const setTheme = () => {
 </script>
 <style lang="scss">
 .top-bar {
-  h3 {
-    color: var(--gren-base);
-  }
   .circle {
     width: 45px;
     height: 45px;
-    border: 2px solid var(--lilac-base);
+    border: 2px solid var(--blue-base);
     border-radius: 45px;
     text-align: center;
     padding-top: 4px;
     cursor: pointer;
     &:hover {
-      border-color: var(--lilac-base-hover);
+      border-color: var(--blue-base-hover);
       .user-icon {
-        color: var(--lilac-base-hover);
+        color: var(--blue-base-hover);
       }
     }
     .user-icon {
-      color: var(--lilac-base);
+      color: var(--blue-base);
       font-size: 2rem;
     }
   }
   .logo-fp {
     width: 140px;
+    cursor: pointer;
   }
   .btn-theme {
     height: 2.3rem;
