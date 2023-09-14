@@ -84,12 +84,12 @@ defineComponent({
     position: relative;
     top: 48%;
     left: 150px;
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
+    width: 22px;
+    height: 22px;
+    border-radius: 22px;
     background-color: var(--blue-base);
     text-align: center;
-    padding-top: 3px;
+    padding-top: 2px;
     cursor: pointer;
     &:hover {
       background-color: var(--blue-base-hover);

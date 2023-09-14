@@ -1,0 +1,120 @@
+/* ==========================================================================
+ - Text Styles
+========================================================================== */
+
+.title-page {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--blue-title-page);
+}
+
+.sub-title-page {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--blue-title-page);
+}
+
+label {
+  font-size: 1rem;
+  color: var(--color-text-default);
+  letter-spacing: 0.12rem;
+}
+
+th {
+  color: #3d3d3d !important;
+}
+
+td {
+  color: #505050;
+  letter-spacing: 0.05rem;
+}
+
+p.title-form {
+  font-size: 1.2rem;
+  color: var(--color-text-default);
+  letter-spacing: 0.05rem;
+  font-weight: 600;
+}
+/* ==========================================================================
+   - Input Styles
+  ========================================================================== */
+
+.invalid-input {
+  border: 1px solid var(--danger-feedbak);
+  border-radius: 5px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 12 12%27 width=%2712%27 height=%2712%27 fill=%27none%27 stroke=%27%23e55353%27%3e%3ccircle cx=%276%27 cy=%276%27 r=%274.5%27/%3e%3cpath stroke-linejoin=%27round%27 d=%27M5.8 3.6h.4L6 6.5z%27/%3e%3ccircle cx=%276%27 cy=%278.2%27 r=%27.6%27 fill=%27%23e55353%27 stroke=%27none%27/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  background-position: 96%;
+  box-shadow: 0px 0px 7px 5px rgba(255, 96, 96, 0.203);
+}
+.invalid-message {
+  font-size: 0.85rem;
+  margin-top: -1px;
+  color: rgb(231, 28, 28);
+}
+
+input.text-default {
+  border-radius: 4px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--bg-input-text);
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 3px 0px var(--box-shadow-color);
+  -moz-box-shadow: 0px 2px 3px 0px var(--box-shadow-color);
+  box-shadow: 0px 2px 3px 0px var(--box-shadow-color);
+  color: rgb(77, 77, 77);
+}
+
+input.text-default:focus {
+  background-color: var(--blue-bg-input-text-active);
+}
+
+.select-default {
+  border-radius: 4px;
+  padding: 0.6rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: var(--bg-input-text);
+  width: 100%;
+  -webkit-box-shadow: 0px 2px 3px 0px var(--box-shadow-color);
+  -moz-box-shadow: 0px 2px 3px 0px var(--box-shadow-color);
+  box-shadow: 0px 2px 3px 0px var(--box-shadow-color);
+  color: rgb(77, 77, 77);
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" viewBox="0 0 1024 1024"%3E%3Cpath fill="rgb(77, 77, 77)" d="M831.872 340.864L512 652.672L192.128 340.864a30.592 30.592 0 0 0-42.752 0a29.12 29.12 0 0 0 0 41.6L489.664 714.24a32 32 0 0 0 44.672 0l340.288-331.712a29.12 29.12 0 0 0 0-41.728a30.592 30.592 0 0 0-42.752 0z"%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: 96%;
+}
+
+.select-default:focus {
+  background-color: rgb(240, 240, 240);
+}
+/* ==========================================================================
+   - Button Styles
+  ========================================================================== */
+
+.button-default {
+  &:hover {
+    background-color: var(--blue-base-hover) !important;
+  }
+}
+
+.delete-button {
+  background-color: var(--danger-feedbak) !important;
+  min-width: 45px !important;
+  .icon-trash {
+    color: #ffffff;
+  }
+}
+
+/* ==========================================================================
+   - Accordion Styles
+  ========================================================================== */
+.v-expansion-panel-title__overlay {
+  background-color: var(--blue-base) !important;
+}
+
+.v-field--active {
+  background-color: var(--blue-bg-input-text-active) !important;
+}
