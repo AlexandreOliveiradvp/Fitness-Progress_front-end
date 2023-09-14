@@ -1,13 +1,17 @@
 <template>
   <v-container fluid>
-    <v-row>
-      <v-col>
-        <h1>Reviews Register Page</h1>
-      </v-col>
-    </v-row>
+    <AccordionRegisterReviews />
+    <v-card>
+      <v-row>
+        <v-col class="py-8 px-9">
+          <h4 class="sub-title-page">Avaliações Registradas</h4>
+        </v-col>
+      </v-row>
+    </v-card>
   </v-container>
 </template>
 <script lang="ts" setup>
+import AccordionRegisterReviews from "@/components/AccordionRegisterReviews.vue";
 import { defineComponent } from "vue";
 defineComponent({
   name: "RegisterReviews",
