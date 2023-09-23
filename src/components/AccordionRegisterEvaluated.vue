@@ -74,7 +74,7 @@
               <Field
                 name="dateofbirth"
                 v-slot="{ field, errorMessage }"
-                v-model="evaluatedInfo.dateofbirth"
+                v-model="evaluatedInfo.dateOfBirth"
               >
                 <label>Data de Nascimento:</label>
                 <input
@@ -164,7 +164,7 @@ const evaluatedInfo = ref({
   name: undefined,
   email: undefined,
   phone: undefined,
-  dateofbirth: undefined,
+  dateOfBirth: undefined,
   sex: undefined,
 });
 
@@ -187,7 +187,7 @@ const handleEvaluated = () => {
     evaluatedInfo.value.name = undefined;
     evaluatedInfo.value.email = undefined;
     evaluatedInfo.value.phone = undefined;
-    evaluatedInfo.value.dateofbirth = undefined;
+    evaluatedInfo.value.dateOfBirth = undefined;
     evaluatedInfo.value.sex = undefined;
   }, 600);
 };

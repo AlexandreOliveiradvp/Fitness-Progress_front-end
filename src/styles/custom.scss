@@ -106,6 +106,9 @@ input.text-default:focus {
   .icon-trash {
     color: #ffffff;
   }
+  &:hover {
+    background-color: var(--danger-feedbak-hover) !important;
+  }
 }
 
 /* ==========================================================================

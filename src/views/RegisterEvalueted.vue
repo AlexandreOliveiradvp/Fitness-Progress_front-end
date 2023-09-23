@@ -26,7 +26,7 @@
                 <td>{{ evaluated.name }}</td>
                 <td>{{ evaluated.email }}</td>
                 <td>{{ evaluated.phone }}</td>
-                <td>{{ evaluated.dateofbirth }}</td>
+                <td>{{ evaluated.date_of_birth }}</td>
                 <td>{{ evaluated.sex }}</td>
                 <td>
                   <v-btn
@@ -56,11 +56,16 @@ defineComponent({
 });
 const evaluateds = ref();
 const loading = ref(false);
-const getEvaluateds = () => {
+const getEvaluateds = (): void => {
   api
     .get("/evaluated")
     .then((response) => {
       evaluateds.value = response.data.Evaluateds;
+      evaluateds.value.forEach((element: any) => {
+        element.sex == "male"
+          ? (element.sex = "Masculino")
+          : (element.sex = "Feminino");
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -85,7 +90,7 @@ const deleteEvaluated = async (id: number) => {
   }, 600);
 };
 
-const evaluatedRegistred = ():void => {
+const evaluatedRegistred = (): void => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;

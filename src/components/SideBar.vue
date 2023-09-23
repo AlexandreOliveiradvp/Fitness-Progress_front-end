@@ -57,13 +57,26 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { Icon } from "@iconify/vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const sideBarCollapse = ref(false);
 const registerCollapse = ref(false);
 const router = useRouter();
+const route = useRoute();
+
+watch(
+  () => route.name,
+  (newValue) => {
+    console.log(newValue)
+    if (newValue == "EvaluatedPage" || newValue == "ReviewsPage") {
+      registerCollapse.value = true;
+    } else {
+      registerCollapse.value = false;
+    }
+  }
+);
 
 defineComponent({
   name: "SideBar",
