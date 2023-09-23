@@ -29,12 +29,17 @@
                 <td>{{ evaluated.date_of_birth }}</td>
                 <td>{{ evaluated.sex }}</td>
                 <td>
-                  <v-btn
-                    variant="tonal"
-                    class="delete-button"
-                    @click="deleteEvaluated(evaluated.id)"
-                    ><Icon icon="tabler:trash-filled" class="icon-trash"
-                  /></v-btn>
+                  <v-tooltip text="Deletar Avaliados">
+                    <template v-slot:activator="{ props }">
+                      <v-btn
+                        variant="tonal"
+                        v-bind="props"
+                        class="delete-button"
+                        @click="deleteEvaluated(evaluated.id)"
+                        ><Icon icon="tabler:trash-filled" class="icon"
+                      /></v-btn>
+                    </template>
+                  </v-tooltip>
                 </td>
               </tr>
             </tbody>

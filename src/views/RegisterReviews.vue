@@ -17,23 +17,42 @@
                 <th class="text-left">Idade</th>
                 <th class="text-left">Peso</th>
                 <th class="text-left">Peso ideal</th>
+                <th class="text-left">Data</th>
                 <th class="text-left">Percentual de Gordura</th>
-                <th class="text-left">Deletar</th>
+                <th class="text-left">Ações</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="review in reviews" :key="review.id">
-                <td>{{ review.id_evaluated }}</td>
+                <td>{{ review.evaluatedName }}</td>
                 <td>Idade</td>
                 <td>{{ review.weight }} kg</td>
-                <td>{{ review.ideal_weight }}</td>
+                <td>{{ review.idealWeight }}</td>
+                <td>{{ review.createdAt }}</td>
                 <td>
-                  <div class="badge">{{ review.fat_percent }} %</div>
+                  <div class="badge">{{ review.fatPercent }} %</div>
                 </td>
                 <td>
-                  <v-btn variant="tonal" class="delete-button"
-                    ><Icon icon="tabler:trash-filled" class="icon-trash"
-                  /></v-btn>
+                  <v-tooltip text="Visualizar Avaliação">
+                    <template v-slot:activator="{ props }">
+                      <v-btn
+                        variant="tonal"
+                        v-bind="props"
+                        class="view-button me-2"
+                        ><Icon icon="carbon:view-filled" class="icon"
+                      /></v-btn>
+                    </template>
+                  </v-tooltip>
+                  <v-tooltip text="Deletar Avaliação">
+                    <template v-slot:activator="{ props }">
+                      <v-btn
+                        variant="tonal"
+                        v-bind:="props"
+                        class="delete-button"
+                        ><Icon icon="tabler:trash-filled" class="icon"
+                      /></v-btn>
+                    </template>
+                  </v-tooltip>
                 </td>
               </tr>
             </tbody>
@@ -60,6 +79,9 @@ onMounted(() => {
     .get("/reviews")
     .then((response) => {
       reviews.value = response.data.reviews;
+      reviews.value.forEach((element: any) => {
+        element.createdAt = element.createdAt.slice(0, 10);
+      });
       console.log(reviews.value);
     })
     .catch((err) => {

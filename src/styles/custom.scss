@@ -103,11 +103,22 @@ input.text-default:focus {
 .delete-button {
   background-color: var(--danger-feedbak) !important;
   min-width: 45px !important;
-  .icon-trash {
+  .icon {
     color: #ffffff;
   }
   &:hover {
     background-color: var(--danger-feedbak-hover) !important;
+  }
+}
+
+.view-button {
+  background-color: var(--blue-base) !important;
+  min-width: 45px !important;
+  .icon {
+    color: #ffffff;
+  }
+  &:hover {
+    background-color: var(--blue-base-hover) !important;
   }
 }
 
