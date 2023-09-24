@@ -96,9 +96,10 @@
                 v-model="evaluatedInfo.sex"
               >
                 <label>Sexo:</label>
-                <select class="select-default"
-                v-bind="field"
-                :class="{ 'invalid-input': errors.sex }"
+                <select
+                  class="select-default"
+                  v-bind="field"
+                  :class="{ 'invalid-input': errors.sex }"
                 >
                   <option value="" selected disabled>Selecione o sexo</option>
                   <option value="male">Masculino</option>
@@ -110,10 +111,11 @@
             <v-col> </v-col>
           </v-row>
           <v-row>
-            <v-col>
+            <v-col class="text-end">
+              <v-btn variant="tonal" class="me-2" type="reset"> Limpar </v-btn>
               <v-btn
                 variant="tonal"
-                class="float-right bg-primary button-default"
+                class="bg-primary button-default"
                 type="submit"
               >
                 Salvar
@@ -131,14 +133,13 @@ import { Form, Field } from "vee-validate";
 import * as yup from "yup";
 import api from "@/api/api";
 import showToast from "@/functions/ShowToast";
-import { vMaska } from "maska"
+import { vMaska } from "maska";
 
 defineComponent({
   name: "AccordionRegisterEvaluated",
 });
 
 const emit = defineEmits(["evaluatedRegistred"]);
-const regex = /^[0-9]$/;
 
 const evaluatedSchema = yup.object({
   name: yup.string().required("Este campo é obrigatório"),
@@ -146,17 +147,8 @@ const evaluatedSchema = yup.object({
     .string()
     .required("Este campo é obrigatório")
     .email("Digite um email válido."),
-  phone: yup
-    .string()
-    .required("Este campo é obrigatório")
-    .matches(
-      regex,
-      "Este campo aceita apenas números."
-    ),
-  dateofbirth: yup
-    .string()
-    .required("Este campo é obrigatório")
-    .matches(regex, "Este campo aceita apenas números."),
+  phone: yup.string().required("Este campo é obrigatório"),
+  dateofbirth: yup.string().required("Este campo é obrigatório"),
   sex: yup.string().required("Este campo é obrigatório"),
 });
 
@@ -183,12 +175,5 @@ const handleEvaluated = () => {
         "Falha ao registrar avaliado. Tente novamente mais tarde.";
       showToast(2000, "danger", message.value);
     });
-  setTimeout(() => {
-    evaluatedInfo.value.name = undefined;
-    evaluatedInfo.value.email = undefined;
-    evaluatedInfo.value.phone = undefined;
-    evaluatedInfo.value.dateOfBirth = undefined;
-    evaluatedInfo.value.sex = undefined;
-  }, 600);
 };
 </script>

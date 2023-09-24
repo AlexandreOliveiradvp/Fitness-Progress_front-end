@@ -41,7 +41,11 @@
               </Field>
             </v-col>
             <v-col cols="3">
-              <Field name="weight" v-slot="{ field, errorMessage }">
+              <Field
+                name="weight"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.weight"
+              >
                 <label>Peso:</label>
                 <input
                   v-bind="field"
@@ -552,8 +556,40 @@ const registerReviewSchema = yup.object({
     .required("Campo Obrigatório"),
 });
 
+const submitReview = ref({
+  evaluatedId: undefined,
+  weight: undefined,
+  years: undefined,
+  heigh: undefined,
+  perBicRelaxRg: undefined,
+  perBicRelaxLf: undefined,
+  perBicContRg: undefined,
+  perBicContLf: undefined,
+  perForarmRg: undefined,
+  perForarmLf: undefined,
+  perThighHighRg: undefined,
+  perThighHighLf: undefined,
+  perThighMidRg: undefined,
+  perThighMidLf: undefined,
+  perThighLowRg: undefined,
+  perThighLowLf: undefined,
+  perCalfRg: undefined,
+  perCalfLf: undefined,
+  perWaist: undefined,
+  perHip: undefined,
+  perChest: undefined,
+  perShoulder: undefined,
+  skinSubscapular: undefined,
+  skinTriceps: undefined,
+  skinChest: undefined,
+  skinMidaxillary: undefined,
+  skinSuprailiac: undefined,
+  skinAbdominal: undefined,
+  skinThigh: undefined,
+});
+
 const handleReview = (): void => {
-  console.log("shot");
+  console.log(submitReview.value);
 };
 onMounted(() => {
   api
