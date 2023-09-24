@@ -25,7 +25,7 @@
             <tbody>
               <tr v-for="review in reviews" :key="review.id">
                 <td>{{ review.evaluatedName }}</td>
-                <td>Idade</td>
+                <td>{{ review.years }}</td>
                 <td>{{ review.weight }} kg</td>
                 <td>{{ review.idealWeight }}</td>
                 <td>{{ review.createdAt }}</td>
@@ -82,7 +82,6 @@ onMounted(() => {
       reviews.value.forEach((element: any) => {
         element.createdAt = element.createdAt.slice(0, 10);
       });
-      console.log(reviews.value);
     })
     .catch((err) => {
       console.log(err);

@@ -69,7 +69,6 @@ const route = useRoute();
 watch(
   () => route.name,
   (newValue) => {
-    console.log(newValue)
     if (newValue == "EvaluatedPage" || newValue == "ReviewsPage") {
       registerCollapse.value = true;
     } else {
