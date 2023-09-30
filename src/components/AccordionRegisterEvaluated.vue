@@ -13,6 +13,7 @@
           @submit="handleEvaluated()"
           :validation-schema="evaluatedSchema"
           v-slot="{ errors }"
+          :key="form"
         >
           <v-row>
             <v-col>
@@ -112,7 +113,6 @@
           </v-row>
           <v-row>
             <v-col class="text-end">
-              <v-btn variant="tonal" class="me-2" type="reset"> Limpar </v-btn>
               <v-btn
                 variant="tonal"
                 class="bg-primary button-default"
@@ -153,14 +153,17 @@ const evaluatedSchema = yup.object({
 });
 
 const evaluatedInfo = ref({
-  name: undefined,
-  email: undefined,
-  phone: undefined,
-  dateOfBirth: undefined,
-  sex: undefined,
+  name: '',
+  email: '',
+  phone: '',
+  dateOfBirth: '',
+  sex: '',
 });
 
 const message = ref();
+
+//key to reset form
+const form = ref(0)
 
 const handleEvaluated = () => {
   api
@@ -169,6 +172,14 @@ const handleEvaluated = () => {
       message.value = "Avaliado registrado com sucesso!";
       showToast(2000, "success", message.value);
       emit("evaluatedRegistred");
+      evaluatedInfo.value = {
+        name: '',
+        email: '',
+        phone: '',
+        dateOfBirth: '',
+        sex: '',
+      };
+      form.value++
     })
     .catch(() => {
       message.value =
