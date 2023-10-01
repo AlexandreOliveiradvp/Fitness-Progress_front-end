@@ -13,13 +13,18 @@
           :validation-schema="registerReviewSchema"
           v-slot="{ errors }"
           @submit="handleReview"
+          :key="form"
         >
           <v-row>
             <v-col cols="12" class="pb-0">
               <p class="title-form">Dados Gerais do Avaliado:</p>
             </v-col>
             <v-col cols="3">
-              <Field name="evaluated" v-slot="{ field, errorMessage }">
+              <Field
+                name="evaluated"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.evaluatedId"
+              >
                 <label>Avaliado:</label>
                 <select
                   class="select-default"
@@ -58,7 +63,11 @@
               </Field>
             </v-col>
             <v-col cols="3">
-              <Field name="years" v-slot="{ field, errorMessage }">
+              <Field
+                name="years"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.years"
+              >
                 <label>Idade:</label>
                 <input
                   v-bind="field"
@@ -71,7 +80,11 @@
               </Field>
             </v-col>
             <v-col cols="3">
-              <Field name="height" v-slot="{ field, errorMessage }">
+              <Field
+                name="height"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.heigh"
+              >
                 <label>Altura:</label>
                 <input
                   type="text"
@@ -91,60 +104,68 @@
               <p class="title-form">Perímetros:</p>
             </v-col>
             <v-col>
-              <Field name="perBicRelaxRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perBicRelaxRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perBicRelaxRg"
+              >
                 <label>Biceps Dir. Relaxado:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perBicRelaxRg }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perBicRelaxLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perBicRelaxLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perBicRelaxLf"
+              >
                 <label>Biceps Esq. Relaxado:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perBicRelaxLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perBicContRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perBicContRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perBicContRg"
+              >
                 <label>Biceps Dir. Contraído:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perBicContRg }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perBicContLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perBicContLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perBicContLf"
+              >
                 <label>Biceps Esq. Contraído:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perBicContLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -153,30 +174,34 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="perForarmRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perForarmRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perForarmRg"
+              >
                 <label>Ante-braço Direito:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perForarmRg }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perForarmLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perForarmLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perForarmLf"
+              >
                 <label>Ante-braço Esquerdo:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perForarmLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -185,45 +210,51 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="perThighHighRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perThighHighRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perThighHighRg"
+              >
                 <label>Coxa Alta Direita:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perThighHighRg }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perThighHighLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perThighHighLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perThighHighLf"
+              >
                 <label>Coxa Média Direita:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perThighHighLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perThighMidRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perThighMidRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perThighMidRg"
+              >
                 <label>Coxa Baixa Direita:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perThighMidLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -232,45 +263,51 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="perThighMidLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perThighMidLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perThighMidLf"
+              >
                 <label>Coxa Alta Esquerda:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perThighMidLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perThighLowRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perThighLowRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perThighLowRg"
+              >
                 <label>Coxa Média Esquerda:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perThighLowRg }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perThighLowLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perThighLowLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perThighLowLf"
+              >
                 <label>Coxa Baixa Esquerda:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perThighLowLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -279,30 +316,34 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="perCalfRg" v-slot="{ field, errorMessage }">
+              <Field
+                name="perCalfRg"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perCalfRg"
+              >
                 <label>Panturrilha Direita:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perCalfRg }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perCalfLf" v-slot="{ field, errorMessage }">
+              <Field
+                name="perCalfLf"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perCalfLf"
+              >
                 <label>Panturrilha Esquerda:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perCalfLf }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -311,30 +352,51 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="perWaist" v-slot="{ field, errorMessage }">
+              <Field
+                name="perAbdomem"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perAbdomem"
+              >
+                <label>Abdomem:</label>
+                <input
+                  type="text"
+                  class="text-default"
+                  v-bind="field"
+                  placeholder="Medida em centímetros"
+                  :class="{ 'invalid-input': errors.perAbdomem }"
+                />
+                <p class="invalid-message">{{ errorMessage }}</p>
+              </Field>
+            </v-col>
+            <v-col>
+              <Field
+                name="perWaist"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perWaist"
+              >
                 <label>Cintura:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perWaist }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perHip" v-slot="{ field, errorMessage }">
+              <Field
+                name="perHip"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perHip"
+              >
                 <label>Quadril:</label>
                 <input
                   type="text"
                   class="text-default"
                   placeholder="Medida em centímetros"
                   v-bind="field"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perHip }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -343,30 +405,34 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="perChest" v-slot="{ field, errorMessage }">
+              <Field
+                name="perChest"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perChest"
+              >
                 <label>Tórax:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perChest }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
               </Field>
             </v-col>
             <v-col>
-              <Field name="perShoulder" v-slot="{ field, errorMessage }">
+              <Field
+                name="perShoulder"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.perShoulder"
+              >
                 <label>Ombro:</label>
                 <input
                   type="text"
                   class="text-default"
                   v-bind="field"
                   placeholder="Medida em centímetros"
-                  v-maska
-                  data-maska="##.#"
                   :class="{ 'invalid-input': errors.perShoulder }"
                 />
                 <p class="invalid-message">{{ errorMessage }}</p>
@@ -380,7 +446,11 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="skinSubscapular" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinSubscapular"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinSubscapular"
+              >
                 <label>Subescapular:</label>
                 <input
                   type="text"
@@ -393,7 +463,11 @@
               </Field>
             </v-col>
             <v-col>
-              <Field name="skinTriceps" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinTriceps"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinTriceps"
+              >
                 <label>Triciptal:</label>
                 <input
                   type="text"
@@ -406,7 +480,11 @@
               </Field>
             </v-col>
             <v-col>
-              <Field name="skinChest" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinChest"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinChest"
+              >
                 <label>Peitoral:</label>
                 <input
                   type="text"
@@ -419,7 +497,11 @@
               </Field>
             </v-col>
             <v-col>
-              <Field name="skinMidaxillary" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinMidaxillary"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinMidaxillary"
+              >
                 <label>Axiliar Média:</label>
                 <input
                   type="text"
@@ -434,7 +516,11 @@
           </v-row>
           <v-row>
             <v-col>
-              <Field name="skinSuprailiac" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinSuprailiac"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinSuprailiac"
+              >
                 <label>Suprailíaca:</label>
                 <input
                   type="text"
@@ -447,7 +533,11 @@
               </Field>
             </v-col>
             <v-col>
-              <Field name="skinAbdominal" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinAbdominal"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinAbdominal"
+              >
                 <label>Abdominal:</label>
                 <input
                   type="text"
@@ -460,7 +550,11 @@
               </Field>
             </v-col>
             <v-col>
-              <Field name="skinThigh" v-slot="{ field, errorMessage }">
+              <Field
+                name="skinThigh"
+                v-slot="{ field, errorMessage }"
+                v-model="submitReview.skinThigh"
+              >
                 <label>Coxa:</label>
                 <input
                   type="text"
@@ -495,10 +589,12 @@ import api from "@/api/api";
 import { vMaska } from "maska";
 import { Form, Field } from "vee-validate";
 import * as yup from "yup";
+import showToast from "@/functions/ShowToast";
 defineComponent({
   name: "AccordionRegisterReview",
 });
 
+const emit = defineEmits(["reviewRegistred"]);
 const evaluateds = ref();
 const registerReviewSchema = yup.object({
   evaluated: yup.string().required("Campo Obrigatório"),
@@ -522,6 +618,7 @@ const registerReviewSchema = yup.object({
   perThighLowLf: yup.string().required("Campo Obrigatório"),
   perCalfRg: yup.string().required("Campo Obrigatório"),
   perCalfLf: yup.string().required("Campo Obrigatório"),
+  perAbdomem: yup.string().required("Campo Obrigatório"),
   perWaist: yup.string().required("Campo Obrigatório"),
   perHip: yup.string().required("Campo Obrigatório"),
   perChest: yup.string().required("Campo Obrigatório"),
@@ -575,6 +672,7 @@ const submitReview = ref({
   perThighLowLf: undefined,
   perCalfRg: undefined,
   perCalfLf: undefined,
+  perAbdomem: undefined,
   perWaist: undefined,
   perHip: undefined,
   perChest: undefined,
@@ -588,8 +686,22 @@ const submitReview = ref({
   skinThigh: undefined,
 });
 
+const form = ref(0);
+const message = ref("");
+
 const handleReview = (): void => {
   console.log(submitReview.value);
+  api
+    .post("/reviews", submitReview.value)
+    .then(() => {
+      message.value = "Avaliado registrado com sucesso!";
+      showToast(2000, "success", message.value);
+    })
+    .catch(() => {
+      message.value =
+        "Falha ao registrar avaliado. Tente novamente mais tarde.";
+      showToast(2000, "danger", message.value);
+    });
 };
 onMounted(() => {
   api

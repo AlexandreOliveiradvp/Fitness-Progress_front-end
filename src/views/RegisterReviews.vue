@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <AccordionRegisterReviews />
+    <AccordionRegisterReviews @reviewRegistred="reviewRegistred"/>
     <v-row>
       <v-col class="py-8">
         <v-card>
@@ -73,9 +73,9 @@ defineComponent({
 });
 
 const reviews = ref();
-
-onMounted(() => {
-  api
+const loading = ref(false);
+const getReviews = async () => {
+  await api
     .get("/reviews")
     .then((response) => {
       reviews.value = response.data.reviews;
@@ -86,9 +86,20 @@ onMounted(() => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+const reviewRegistred = () => {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+    getReviews();
+  }, 600);
+}
+
+onMounted(() => {
+  getReviews();
 });
 
-const loading = ref(false);
 </script>
 <style lang="scss">
 .badge {
