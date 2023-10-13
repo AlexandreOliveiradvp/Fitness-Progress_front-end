@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <AccordionRegisterReviews @reviewRegistred="reviewRegistred"/>
+    <AccordionRegisterReviews @reviewRegistred="reviewRegistred" />
     <v-row>
       <v-col class="py-8">
         <v-card>
@@ -24,13 +24,13 @@
             </thead>
             <tbody>
               <tr v-for="review in reviews" :key="review.id">
-                <td>{{ review.evaluatedName }}</td>
+                <td>{{ review.evaluated.name }}</td>
                 <td>{{ review.years }}</td>
                 <td>{{ review.weight }} kg</td>
-                <td>{{ review.idealWeight }}</td>
-                <td>{{ review.createdAt }}</td>
+                <td>{{ review.ideal_weight }} kg</td>
+                <td>{{ review.created_at }}</td>
                 <td>
-                  <div class="badge">{{ review.fatPercent }} %</div>
+                  <div class="badge">{{ review.fat_percent }} %</div>
                 </td>
                 <td>
                   <v-tooltip text="Visualizar Avaliação">
@@ -49,6 +49,7 @@
                         variant="tonal"
                         v-bind:="props"
                         class="delete-button"
+                        @click="deleteReview(review.id)"
                         ><Icon icon="tabler:trash-filled" class="icon"
                       /></v-btn>
                     </template>
@@ -68,6 +69,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import LoaderDefault from "@/components/LoaderDefault.vue";
 import { Icon } from "@iconify/vue";
 import api from "@/api/api";
+import showToast from "@/functions/ShowToast";
 defineComponent({
   name: "RegisterReviews",
 });
@@ -80,7 +82,7 @@ const getReviews = async () => {
     .then((response) => {
       reviews.value = response.data.reviews;
       reviews.value.forEach((element: any) => {
-        element.createdAt = element.createdAt.slice(0, 10);
+        element.created_at = element.created_at.slice(0, 10);
       });
     })
     .catch((err) => {
@@ -88,18 +90,37 @@ const getReviews = async () => {
     });
 };
 
-const reviewRegistred = () => {
+const reviewRegistred = (): void => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
     getReviews();
   }, 600);
-}
+};
+
+const deleteReview = async (id: number): Promise<void> => {
+  loading.value = true;
+  const message = ref();
+  await api
+    .delete(`/reviews/${id}`)
+    .then(() => {
+      message.value = "Avaliação removida com sucesso!";
+      showToast(2000, "success", message.value);
+    })
+    .catch((err) => {
+      console.log(err);
+      message.value = "Falha ao remover avaliação. Tente novamente mais tarde.";
+      showToast(2000, "danger", message.value);
+    });
+  setTimeout(() => {
+    loading.value = false;
+    getReviews();
+  }, 600);
+};
 
 onMounted(() => {
   getReviews();
 });
-
 </script>
 <style lang="scss">
 .badge {
