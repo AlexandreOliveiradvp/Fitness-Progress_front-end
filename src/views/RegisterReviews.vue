@@ -76,6 +76,7 @@ defineComponent({
 
 const reviews = ref();
 const loading = ref(false);
+/* const evaluateds = ref<object[]>([]); */
 const getReviews = async () => {
   await api
     .get("/reviews")

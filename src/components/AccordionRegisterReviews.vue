@@ -83,7 +83,7 @@
               <Field
                 name="height"
                 v-slot="{ field, errorMessage }"
-                v-model="submitReview.heigh"
+                v-model="submitReview.height"
               >
                 <label>Altura:</label>
                 <input
@@ -657,7 +657,7 @@ const submitReview = ref({
   evaluatedId: undefined,
   weight: undefined,
   years: undefined,
-  heigh: undefined,
+  height: undefined,
   perBicRelaxRg: undefined,
   perBicRelaxLf: undefined,
   perBicContRg: undefined,
@@ -687,11 +687,10 @@ const submitReview = ref({
 });
 
 const form = ref(0);
-const message = ref("");
 
-const handleReview = (): void => {
-  console.log(submitReview.value);
-  api
+const handleReview = async (): Promise<void> => {
+  const message = ref("");
+  await api
     .post("/reviews", submitReview.value)
     .then(() => {
       message.value = "Avaliado registrado com sucesso!";
@@ -702,10 +701,11 @@ const handleReview = (): void => {
         "Falha ao registrar avaliado. Tente novamente mais tarde.";
       showToast(2000, "danger", message.value);
     });
+    form.value++;
+    emit("reviewRegistred");
 };
 onMounted(() => {
-  api
-    .get("/evaluated")
+  api.get("/evaluated")
     .then((response) => {
       evaluateds.value = response.data.Evaluateds;
     })
