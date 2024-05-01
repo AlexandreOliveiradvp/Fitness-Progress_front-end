@@ -7,6 +7,15 @@
             <v-col class="py-8 px-9">
               <h4 class="sub-title-page">Avaliados Registrados</h4>
             </v-col>
+            <v-col class="py-8 px-9 text-right">
+              <v-btn
+                variant="tonal"
+                class="bg-primary button-default"
+                @click="router.push('/register-evaluated')"
+              >
+                Registrar Avaliados
+              </v-btn>
+            </v-col>
           </v-row>
           <LoaderDefault v-if="loading" />
           <v-table :hover="true">
@@ -54,11 +63,13 @@ import api from "@/api/api";
 import { Icon } from "@iconify/vue";
 import showToast from "@/functions/ShowToast";
 import LoaderDefault from "@/components/LoaderDefault.vue";
+import { useRouter } from "vue-router";
 defineComponent({
   name: "RegisterEvaluated",
 });
 const evaluateds = ref();
 const loading = ref(false);
+const router = useRouter();
 const getEvaluateds = (): void => {
   api
     .get("/evaluated")
@@ -93,13 +104,6 @@ const deleteEvaluated = async (id: number) => {
   }, 600);
 };
 
-const evaluatedRegistred = (): void => {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    getEvaluateds();
-  }, 600);
-};
 onMounted(() => {
   getEvaluateds();
 });

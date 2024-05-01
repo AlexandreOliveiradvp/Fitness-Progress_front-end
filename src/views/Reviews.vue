@@ -7,6 +7,15 @@
             <v-col class="py-8 px-9">
               <h4 class="sub-title-page">Avaliações Registradas</h4>
             </v-col>
+            <v-col class="py-8 px-9 text-right">
+              <v-btn
+                variant="tonal"
+                class="bg-primary button-default"
+                @click="router.push('/register-reviews')"
+              >
+                Registrar Avaliações
+              </v-btn>
+            </v-col>
           </v-row>
           <LoaderDefault v-if="loading" />
           <v-table :hover="true">
@@ -68,12 +77,14 @@ import LoaderDefault from "@/components/LoaderDefault.vue";
 import { Icon } from "@iconify/vue";
 import api from "@/api/api";
 import showToast from "@/functions/ShowToast";
+import { useRouter } from "vue-router";
 defineComponent({
   name: "RegisterReviews",
 });
 
 const reviews = ref();
 const loading = ref(false);
+const router = useRouter()
 /* const evaluateds = ref<object[]>([]); */
 const getReviews = async () => {
   await api
@@ -87,14 +98,6 @@ const getReviews = async () => {
     .catch((err) => {
       console.log(err);
     });
-};
-
-const reviewRegistred = (): void => {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    getReviews();
-  }, 600);
 };
 
 const deleteReview = async (id: number): Promise<void> => {

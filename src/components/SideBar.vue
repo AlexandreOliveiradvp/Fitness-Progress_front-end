@@ -18,7 +18,7 @@
           <div>
             <Icon icon="ion:create" class="me-2 mt-1" />
           </div>
-          <div>Cadastro</div>
+          <div>Administração</div>
           <div>
             <Icon
               icon="ion:chevron-down"
@@ -69,7 +69,12 @@ const route = useRoute();
 watch(
   () => route.name,
   (newValue) => {
-    if (newValue == "EvaluatedPage" || newValue == "ReviewsPage") {
+    if (
+      newValue == "EvaluatedPage" ||
+      newValue == "ReviewsPage" ||
+      newValue == "RegisterEvaluated" ||
+      newValue == "RegisterReviews"
+    ) {
       registerCollapse.value = true;
     } else {
       registerCollapse.value = false;
