@@ -17,14 +17,14 @@ const routes = [
         component: () => import("@/views/Home.vue"),
       },
       {
-        path: "/register-evaluated",
+        path: "/evaluated",
         name: "EvaluatedPage",
-        component: () => import("@/views/RegisterEvalueted.vue"),
+        component: () => import("@/views/Evalueted.vue"),
       },
       {
-        path: "/register-reviews",
+        path: "/reviews",
         name: "ReviewsPage",
-        component: () => import("@/views/RegisterReviews.vue"),
+        component: () => import("@/views/Reviews.vue"),
       },
     ],
   },

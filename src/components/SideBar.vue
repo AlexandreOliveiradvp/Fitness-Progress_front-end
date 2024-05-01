@@ -34,7 +34,7 @@
           <li
             class="px-5"
             v-if="registerCollapse"
-            @click="router.push({ path: '/register-evaluated' })"
+            @click="router.push({ path: '/evaluated' })"
           >
             <div>
               <Icon icon="icon-park-solid:sporting" class="me-2 mt-1" />
@@ -44,7 +44,7 @@
           <li
             class="px-5"
             v-if="registerCollapse"
-            @click="router.push({ path: '/register-reviews' })"
+            @click="router.push({ path: '/reviews' })"
           >
             <div>
               <Icon icon="icon-park-solid:doc-fail" class="me-2 mt-1" />

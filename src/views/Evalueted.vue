@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <AccordionRegisterEvaluated @evaluatedRegistred="evaluatedRegistred()" />
     <v-row>
       <v-col class="py-8">
         <v-card>
@@ -52,7 +51,6 @@
 <script lang="ts" setup>
 import { defineComponent, onMounted, ref } from "vue";
 import api from "@/api/api";
-import AccordionRegisterEvaluated from "@/components/AccordionRegisterEvaluated.vue";
 import { Icon } from "@iconify/vue";
 import showToast from "@/functions/ShowToast";
 import LoaderDefault from "@/components/LoaderDefault.vue";

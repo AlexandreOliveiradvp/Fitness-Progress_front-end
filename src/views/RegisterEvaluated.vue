@@ -136,7 +136,7 @@ import showToast from "@/functions/ShowToast";
 import { vMaska } from "maska";
 
 defineComponent({
-  name: "AccordionRegisterEvaluated",
+  name: "RegisterEvaluated",
 });
 
 const emit = defineEmits(["evaluatedRegistred"]);
