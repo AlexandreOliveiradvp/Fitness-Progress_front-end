@@ -99,29 +99,29 @@ defineComponent({
   transition-duration: 200ms;
   .action {
     position: relative;
-    top: 48%;
-    left: 150px;
-    width: 22px;
-    height: 22px;
+    top: 42vh;
+    left: 156px;
+    width: 15px;
+    height: 60px;
     border-radius: 22px;
     background-color: var(--blue-base);
-    text-align: center;
-    padding-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     &:hover {
       background-color: var(--blue-base-hover);
     }
     .icon-collapse {
       color: #ffffff;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition-duration: 200ms;
     }
   }
   .menu-list {
     width: 100%;
     height: 80%;
-    padding-top: 0.7rem;
-    margin-top: -1.7rem;
+    margin-top: -2rem;
     .title-list {
       color: #ffffff;
       padding: 0.5rem 0 0.5rem 0;
@@ -173,10 +173,11 @@ defineComponent({
 .collapse-sidebar {
   margin-left: -170px;
   .action {
-    left: 162px;
+    left: 165px;
     .icon-collapse {
       rotate: 180deg;
       margin-left: 5px;
+      font-size: 1rem;
     }
   }
 }
