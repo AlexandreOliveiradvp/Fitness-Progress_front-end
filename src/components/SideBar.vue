@@ -18,7 +18,7 @@
           <div>
             <Icon icon="ion:create" class="me-2 mt-1" />
           </div>
-          <div>Cadastro</div>
+          <div>Administração</div>
           <div>
             <Icon
               icon="ion:chevron-down"
@@ -34,14 +34,18 @@
           <li
             class="px-5"
             v-if="registerCollapse"
-            @click="router.push({ path: '/register-evaluated' })"
+            @click="router.push({ path: '/evaluated' })"
           >
             <div>
               <Icon icon="icon-park-solid:sporting" class="me-2 mt-1" />
             </div>
             <div>Avaliados</div>
           </li>
-          <li class="px-5" v-if="registerCollapse">
+          <li
+            class="px-5"
+            v-if="registerCollapse"
+            @click="router.push({ path: '/reviews' })"
+          >
             <div>
               <Icon icon="icon-park-solid:doc-fail" class="me-2 mt-1" />
             </div>
@@ -53,13 +57,30 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, watch } from "vue";
 import { Icon } from "@iconify/vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const sideBarCollapse = ref(false);
 const registerCollapse = ref(false);
 const router = useRouter();
+const route = useRoute();
+
+watch(
+  () => route.name,
+  (newValue) => {
+    if (
+      newValue == "EvaluatedPage" ||
+      newValue == "ReviewsPage" ||
+      newValue == "RegisterEvaluated" ||
+      newValue == "RegisterReviews"
+    ) {
+      registerCollapse.value = true;
+    } else {
+      registerCollapse.value = false;
+    }
+  }
+);
 
 defineComponent({
   name: "SideBar",
@@ -78,29 +99,30 @@ defineComponent({
   transition-duration: 200ms;
   .action {
     position: relative;
-    top: 48%;
-    left: 150px;
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
+    top: 42vh;
+    left: 156px;
+    width: 15px;
+    height: 60px;
+    border-radius: 22px;
     background-color: var(--blue-base);
-    text-align: center;
-    padding-top: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    opacity: 0.9;
     &:hover {
       background-color: var(--blue-base-hover);
     }
     .icon-collapse {
       color: #ffffff;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition-duration: 200ms;
     }
   }
   .menu-list {
     width: 100%;
     height: 80%;
-    padding-top: 0.7rem;
-    margin-top: -1.7rem;
+    margin-top: -2rem;
     .title-list {
       color: #ffffff;
       padding: 0.5rem 0 0.5rem 0;
@@ -152,10 +174,11 @@ defineComponent({
 .collapse-sidebar {
   margin-left: -170px;
   .action {
-    left: 162px;
+    left: 165px;
     .icon-collapse {
       rotate: 180deg;
       margin-left: 5px;
+      font-size: 1rem;
     }
   }
 }
