@@ -109,6 +109,7 @@ defineComponent({
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    opacity: 0.9;
     &:hover {
       background-color: var(--blue-base-hover);
     }
